@@ -23,7 +23,10 @@ unzip glove.840B.300d.zip -d ./dataset/glove/
 # 可以指定不同数据集进行模型训练
 ./train.sh
 ```
-模型 checkpoints 和最优模型保存在 `./saved_models`. 
+Rest14 准确率
+![acc](https://github.com/baochenyi-lms/Syntax-GCN/blob/master/images/acc.jpg?raw=true)
+Rest14 损失
+![loss](https://github.com/baochenyi-lms/Syntax-GCN/blob/master/images/loss.jpg?raw=true)
 
 - 模型评估
 ```Bash
