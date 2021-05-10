@@ -1,6 +1,6 @@
 #!/bin/bash
 # build vocab for different datasets
-python3 build_vocab.py --data_dir dataset/Restaurants --vocab_dir dataset/Restaurants
-python3 build_vocab.py --data_dir dataset/Laptops --vocab_dir dataset/Laptops
-python3 build_vocab.py --data_dir dataset/Restaurants16 --vocab_dir dataset/Restaurants16
-python3 build_vocab.py --data_dir dataset/Tweets --vocab_dir dataset/Tweets
+python3 build_vocab.py --data_dir dataset/Rest14 --vocab_dir dataset/Rest14
+python3 build_vocab.py --data_dir dataset/Laptop14 --vocab_dir dataset/Laptop14
+python3 build_vocab.py --data_dir dataset/Rest15 --vocab_dir dataset/Rest15
+python3 build_vocab.py --data_dir dataset/Laptop15 --vocab_dir dataset/Laptop15

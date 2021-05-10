@@ -1,4 +1,5 @@
 *.pyc
 .idea
-dataset
+dataset/glove
 saved_models
+__pycache__

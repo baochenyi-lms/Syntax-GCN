@@ -56,8 +56,8 @@ class Evaluator:
 if __name__ == '__main__':
     # Parameters
     parser = argparse.ArgumentParser()
-    parser.add_argument('--data_dir', default='dataset/Tweets', type=str)
-    parser.add_argument('--vocab_dir', default='dataset/Tweets', type=str)
+    parser.add_argument('--data_dir', default='dataset/Laptop15', type=str)
+    parser.add_argument('--vocab_dir', default='dataset/Laptop15', type=str)
     parser.add_argument('--batch_size', default=32, type=int, help='Batch size.')
     parser.add_argument('--lower', default=True, help='Lowercase all words.')
     parser.add_argument('--model_dir', default='saved_models/best_model.pt', type=str, help='Directory of the model.')

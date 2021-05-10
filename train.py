@@ -170,8 +170,8 @@ class Executor:
 if __name__ == '__main__':
     # Parameters
     parser = argparse.ArgumentParser()
-    parser.add_argument('--data_dir', default='dataset/Restaurants', type=str)
-    parser.add_argument('--vocab_dir', default='dataset/Restaurants', type=str)
+    parser.add_argument('--data_dir', default='dataset/Rest14', type=str)
+    parser.add_argument('--vocab_dir', default='dataset/Rest14', type=str)
     parser.add_argument('--glove_dir', default='dataset/glove', type=str)
     parser.add_argument('--emb_dim', default=300, type=int, help='Word embedding dimension.')
     parser.add_argument('--post_dim', default=30, type=int, help='Position embedding dimension.')

@@ -100,31 +100,22 @@ class DataLoader(object):
         batch_size = len(batch)
         batch = list(zip(*batch))
 
-        # sort all fields by lens for easy RNN operations
+        # Sort all fields by lens for easy RNN operations
         lens = [len(x) for x in batch[0]]
         batch, orig_idx = sort_all(batch, lens)
 
-        # convert to tensors
-        # token 
-        tok = get_long_tensor(batch[0], batch_size)
-        # aspect
-        asp = get_long_tensor(batch[1], batch_size)
-        # pos
-        pos = get_long_tensor(batch[2], batch_size)
-        # head
-        head = get_long_tensor(batch[3], batch_size)
-        # deprel
-        deprel = get_long_tensor(batch[4], batch_size)
-        # post
-        post = get_long_tensor(batch[5], batch_size)
-        # mask
-        mask = get_float_tensor(batch[6], batch_size)
-        # length
-        length = torch.LongTensor(batch[7])
-        # label
-        label = torch.LongTensor(batch[8])
+        # Convert to tensors
+        tok = get_long_tensor(batch[0], batch_size)     # token
+        asp = get_long_tensor(batch[1], batch_size)     # aspect
+        pos = get_long_tensor(batch[2], batch_size)     # pos
+        head = get_long_tensor(batch[3], batch_size)    # head
+        deprel = get_long_tensor(batch[4], batch_size)  # deprel
+        post = get_long_tensor(batch[5], batch_size)    # post
+        mask = get_float_tensor(batch[6], batch_size)   # mask
+        length = torch.LongTensor(batch[7])             # length
+        label = torch.LongTensor(batch[8])              # label
 
-        return (tok, asp, pos, head, deprel, post, mask, length, label)
+        return tok, asp, pos, head, deprel, post, mask, length, label
 
     def __iter__(self):
         for i in range(self.__len__()):
