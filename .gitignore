@@ -1,4 +1,4 @@
 *.pyc
 .idea
-dataset/glove/glove.840B.300d.txt
+dataset
 saved_models
