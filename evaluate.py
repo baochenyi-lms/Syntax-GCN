@@ -26,7 +26,7 @@ class Evaluator:
             dump = torch.load(self.args.model_dir + '/best_model.pt')
             opt = dump['config']
             model = GCNTrainer(opt)
-            model.load(self.args.model_dir)
+            model.load(self.args.model_dir + '/best_model.pt')
             return model
         except BaseException:
             print("Loading model failed!")
