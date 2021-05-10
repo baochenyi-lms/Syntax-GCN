@@ -23,10 +23,13 @@ unzip glove.840B.300d.zip -d ./dataset/glove/
 # 可以指定不同数据集进行模型训练
 ./train.sh
 ```
-Rest14 准确率
-![acc](https://github.com/baochenyi-lms/Syntax-GCN/blob/master/images/acc.jpg?raw=true)
-Rest14 损失
-![loss](https://github.com/baochenyi-lms/Syntax-GCN/blob/master/images/loss.jpg?raw=true)
+e.g. Rest14 准确率
+
+<img src="https://github.com/baochenyi-lms/Syntax-GCN/blob/master/images/acc.jpg?raw=true" width=80% height=80% />
+
+e.g. Rest14 损失值
+
+<img src="https://github.com/baochenyi-lms/Syntax-GCN/blob/master/images/loss.jpg?raw=true" width=80% height=80% />
 
 - 模型评估
 ```Bash
