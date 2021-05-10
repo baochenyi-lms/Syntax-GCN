@@ -8,7 +8,6 @@ import numpy
 import linecache
 
 from vocabulary import Vocabulary
-from shutil import copyfile
 from sklearn import metrics
 from data_loader import DataLoader
 from gcn_trainer import GCNTrainer
@@ -18,8 +17,8 @@ import setting
 
 
 class Executor:
-    def __init__(self, args):
-        self.args = args
+    def __init__(self, params):
+        self.args = params
         self.token_vocab = Vocabulary.load_vocab(self.args.vocab_dir + setting.VOCAB_TOKEN_FILE)  # token
         self.pos_vocab = Vocabulary.load_vocab(self.args.vocab_dir + setting.VOCAB_POS_FILE)  # pos
         self.post_vocab = Vocabulary.load_vocab(self.args.vocab_dir + setting.VOCAB_POST_FILE)  # position
@@ -104,6 +103,7 @@ class Executor:
         train_acc_history, train_loss_history, test_loss_history, f1_score_history = [], [], [], [0.]
         test_acc_history = [0.]
         for epoch in range(1, self.args.num_epoch + 1):
+            print("Training on train set...epoch {}".format(epoch))
             train_loss, train_acc, train_step = 0., 0., 0
             for i, batch in enumerate(train_batch):
                 loss, acc = trainer.update(batch)
@@ -136,20 +136,16 @@ class Executor:
             train_loss_history.append(train_loss / train_step)
             test_loss_history.append(test_loss / test_step)
 
-            # save
-            model_file = model_save_dir + '/checkpoint_epoch_{}.pt'.format(epoch)
-            trainer.save(model_file)
-
             # Save best model
             if epoch == 1 or test_acc / test_step > max(test_acc_history):
-                copyfile(model_file, model_save_dir + '/best_model.pt')
-                print("new best model saved.")
+                model_file = model_save_dir + '/best_model.pt'.format(epoch)
+                trainer.save(model_file)
 
             test_acc_history.append(test_acc / test_step)
             f1_score_history.append(f1_score)
             print()
 
-        print("Training ended with {} epochs.".format(epoch))
+        print("Training ended with {} epochs.".format(self.args.num_epoch))
         bt_train_acc = max(train_acc_history)
         bt_train_loss = min(train_loss_history)
         bt_test_acc = max(test_acc_history)
@@ -161,9 +157,9 @@ class Executor:
             bt_test_acc,
             bt_f1_score,
             bt_test_loss))
-        self.draw_curve(train_log=train_acc_history, test_log=test_acc_history[1:], curve_type="acc",
+        self.draw_curve(train_records=train_acc_history, test_records=test_acc_history[1:], curve_type="acc",
                         epoch=self.args.num_epoch)
-        self.draw_curve(train_log=train_loss_history, test_log=test_loss_history, curve_type="loss",
+        self.draw_curve(train_records=train_loss_history, test_records=test_loss_history, curve_type="loss",
                         epoch=self.args.num_epoch)
 
 
@@ -195,7 +191,7 @@ if __name__ == '__main__':
     parser.add_argument('--batch_size', default=32, type=int, help='Training batch size.')
     parser.add_argument('--log_step', default=20, type=int, help='Print log every k steps.')
     parser.add_argument('--log', default='logs.txt', type=str, help='Write training log to file.')
-    parser.add_argument('--save_dir', default='./saved_models', type=str, help='Root dir for saving models.')
+    parser.add_argument('--save_dir', default='saved_models/Rest14', type=str, help='Root dir for saving models.')
     parser.add_argument('--seed', default=1234, type=int)
     args = parser.parse_args()
 

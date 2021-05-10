@@ -11,8 +11,8 @@ from gcn_trainer import GCNTrainer
 
 
 class Evaluator:
-    def __init__(self, args):
-        self.args = args
+    def __init__(self, params):
+        self.args = params
         self.token_vocab = Vocabulary.load_vocab(self.args.vocab_dir + setting.VOCAB_TOKEN_FILE)     # token
         self.pos_vocab = Vocabulary.load_vocab(self.args.vocab_dir + setting.VOCAB_POS_FILE)         # pos
         self.post_vocab = Vocabulary.load_vocab(self.args.vocab_dir + setting.VOCAB_POST_FILE)       # position
@@ -23,7 +23,7 @@ class Evaluator:
     def _load_model(self):
         print("Loading model from {}".format(self.args.model_dir))
         try:
-            dump = torch.load(self.args.model_dir)
+            dump = torch.load(self.args.model_dir + '/best_model.pt')
             opt = dump['config']
             model = GCNTrainer(opt)
             model.load(self.args.model_dir)
@@ -60,7 +60,7 @@ if __name__ == '__main__':
     parser.add_argument('--vocab_dir', default='dataset/Laptop15', type=str)
     parser.add_argument('--batch_size', default=32, type=int, help='Batch size.')
     parser.add_argument('--lower', default=True, help='Lowercase all words.')
-    parser.add_argument('--model_dir', default='saved_models/best_model.pt', type=str, help='Directory of the model.')
+    parser.add_argument('--model_dir', default='saved_models/Rest14', type=str, help='Directory of the model.')
     args = parser.parse_args()
 
     evaluator = Evaluator(args)
