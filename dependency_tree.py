@@ -44,7 +44,7 @@ class DependencyTree(object):
 
 
 # Convert a sequence of head indexes into a tree object.
-def head_to_tree(head, len_):
+def head_to_tree(head, words, len_):
     if not isinstance(head, list):
         head = head[:len_].tolist()
     root = None

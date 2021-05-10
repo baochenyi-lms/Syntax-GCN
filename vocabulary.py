@@ -43,7 +43,7 @@ class Vocabulary(object):
         return self
 
     @staticmethod
-    def load_vocab(vocab_path: str):
+    def load_vocab(vocab_path):
         with open(vocab_path, "rb") as f:
             return pickle.load(f)
 

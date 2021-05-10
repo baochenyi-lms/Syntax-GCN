@@ -4,7 +4,7 @@ import argparse
 
 import torch
 import setting
-from vocabulary import Vocab
+from vocabulary import Vocabulary
 from sklearn import metrics
 from data_loader import DataLoader
 from gcn_trainer import GCNTrainer
@@ -13,11 +13,11 @@ from gcn_trainer import GCNTrainer
 class Evaluator:
     def __init__(self, args):
         self.args = args
-        self.token_vocab = Vocab.load_vocab(self.args.vocab_dir + setting.VOCAB_TOKEN_FILE)     # token
-        self.pos_vocab = Vocab.load_vocab(self.args.vocab_dir + setting.VOCAB_POS_FILE)         # pos
-        self.post_vocab = Vocab.load_vocab(self.args.vocab_dir + setting.VOCAB_POST_FILE)       # position
-        self.dep_vocab = Vocab.load_vocab(self.args.vocab_dir + setting.VOCAB_DEP_FILE)         # deprel
-        self.pol_vocab = Vocab.load_vocab(self.args.vocab_dir + setting.VOCAB_POL_FILE)         # polarity
+        self.token_vocab = Vocabulary.load_vocab(self.args.vocab_dir + setting.VOCAB_TOKEN_FILE)     # token
+        self.pos_vocab = Vocabulary.load_vocab(self.args.vocab_dir + setting.VOCAB_POS_FILE)         # pos
+        self.post_vocab = Vocabulary.load_vocab(self.args.vocab_dir + setting.VOCAB_POST_FILE)       # position
+        self.dep_vocab = Vocabulary.load_vocab(self.args.vocab_dir + setting.VOCAB_DEP_FILE)         # deprel
+        self.pol_vocab = Vocabulary.load_vocab(self.args.vocab_dir + setting.VOCAB_POL_FILE)         # polarity
         self.vocab = (self.token_vocab, self.post_vocab, self.pos_vocab, self.dep_vocab, self.pol_vocab)
 
     def _load_model(self):
